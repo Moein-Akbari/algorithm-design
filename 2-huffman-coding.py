@@ -1,34 +1,28 @@
-from typing import Generic, List, TypeVar
+# Internal
+from typing import Generic, List, Tuple, TypeVar
+import heapq
 
-T = TypeVar('T')
-
-class MinHeap(Generic[T]):
-    def __init__(self, data: List[T] = []) -> None:
-        self.__data: List[T] = []
-        if data:
-            self.__heapify(data)
-    
-    def __len__(self) -> int:
-        return len(self.__data)
+# External
+from binarytree import Node # https://pypi.org/project/binarytree/
 
 
-    def push(self, node: T) -> None:
-        pass
+def huffman_coding(alphabet_frequencies: List[Tuple[str, int]]) -> Tuple[str, int]:
+    heap_data = [(freq, char) for char, freq in alphabet_frequencies]
+    heapq.heapify(heap_data)
 
+    for _ in range(len(alphabet_frequencies) - 1):
+        x = heapq.heappop(heap_data)
+        y = heapq.heappop(heap_data)
+        heapq.heappush(heap_data, (x[0] + y[0], None))
 
-    def pop(self) -> T:
-        pass
+    return heap_data
 
-
-    def peek(self) -> T:
-        pass
-
-        
-    def __heapify(self, data: List[T]) -> None:
-        raise NotImplementedError()
-    
-    def __bubble_up(self, index: int):
-        pass
-
-    def __bubble_down(self, index: int):
-        pass
+if __name__ == '__main__':
+    print(huffman_coding([
+            ('a', 45),
+            ('b', 13),
+            ('c', 12),
+            ('d', 16),
+            ('e', 9),
+            ('f', 5)
+    ]))
