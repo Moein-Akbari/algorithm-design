@@ -24,7 +24,10 @@ class Node(Generic[T]):
     
     # fully copied from chatgpt
     def __repr__(self) -> str:
-        return f"Node(value={self.value}, left={repr(self.left)}, right={repr(self.right)})"
+        return f"Node(value={self.value}" + \
+               f"{f', left={repr(self.left)}' if self.left else ''}" + \
+               f"{f', right={repr(self.right)}' if self.right else ''}" + \
+               ")"
 
     # __str__ gives a "pretty" string representation, showing the tree hierarchy
     def __str__(self) -> str:
