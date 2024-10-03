@@ -1,19 +1,25 @@
 # Internal
-from typing import Generic, List, Tuple, TypeVar
+from typing import List, Tuple
 import heapq
 
-# External
-from binarytree import Node # https://pypi.org/project/binarytree/
+# Local
+from infrastructure.BinaryTree import Node
 
 
 def huffman_coding(alphabet_frequencies: List[Tuple[str, int]]) -> Tuple[str, int]:
-    heap_data = [(freq, char) for char, freq in alphabet_frequencies]
+    heap_data = [Node((freq, char)) for char, freq in alphabet_frequencies]
     heapq.heapify(heap_data)
 
     for _ in range(len(alphabet_frequencies) - 1):
+        z = Node()
         x = heapq.heappop(heap_data)
         y = heapq.heappop(heap_data)
-        heapq.heappush(heap_data, (x[0] + y[0], None))
+
+        z.left = x if x < y else y
+        z.right = x if x >= y else y
+
+        z.value = (x.value[0] + y.value[0], None)
+        heapq.heappush(heap_data, z)
 
     return heap_data
 
