@@ -1,5 +1,5 @@
 # Internal
-from typing import Dict, List, Tuple
+from typing import Dict, Tuple
 import heapq
 
 # Local
@@ -24,7 +24,7 @@ def huffman_coding(alphabet_frequencies: Dict[str, int]) -> Node[Tuple[int, str]
     return heap_data
 
 
-def convert_tree_to_code(tree: Node[Tuple[int, str]]) -> Dict[str, int]:
+def convert_tree_to_code(tree: Node[Tuple[int, str]]) -> Dict[str, str]:
     pass
 
 
