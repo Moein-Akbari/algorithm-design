@@ -1,9 +1,9 @@
 # Internal
-from typing import Dict, Tuple
 import heapq
+from typing import Dict, Tuple
 
 # Local
-from ..infrastructure.BinaryTree import Node
+from infrastructure import BinaryTreeNode as Node
 
 
 def huffman_coding(alphabet_frequencies: Dict[str, int]) -> Node[Tuple[int, str]]:
