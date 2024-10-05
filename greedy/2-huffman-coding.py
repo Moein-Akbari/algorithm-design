@@ -3,7 +3,7 @@ from typing import Dict, Tuple
 import heapq
 
 # Local
-from infrastructure.BinaryTree import Node
+from ..infrastructure.BinaryTree import Node
 
 
 def huffman_coding(alphabet_frequencies: Dict[str, int]) -> Node[Tuple[int, str]]:
@@ -21,7 +21,7 @@ def huffman_coding(alphabet_frequencies: Dict[str, int]) -> Node[Tuple[int, str]
         z.value = (x.value[0] + y.value[0], None)
         heapq.heappush(heap_data, z)
 
-    return heap_data
+    return heapq.heappop(heap_data)
 
 
 def convert_tree_to_code(tree: Node[Tuple[int, str]]) -> Dict[str, str]:
