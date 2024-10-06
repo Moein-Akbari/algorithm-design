@@ -44,13 +44,9 @@ class BinaryTreeNode(Generic[T]):
         
         if self.left:
             lines.extend(self.left._tree_str(level + 1, prefix="L--- "))
-        else:
-            lines.append(f"{'  ' * (level + 1)}L--- None")
         
         if self.right:
             lines.extend(self.right._tree_str(level + 1, prefix="R--- "))
-        else:
-            lines.append(f"{'  ' * (level + 1)}R--- None")
         
         return lines
     
