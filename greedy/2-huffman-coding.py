@@ -15,8 +15,8 @@ def huffman_coding(alphabet_frequencies: Dict[str, int]) -> Node[Tuple[int, str]
         x = heapq.heappop(heap_data)
         y = heapq.heappop(heap_data)
 
-        z.left = x if x < y else y
-        z.right = x if x >= y else y
+        z.left = x
+        z.right = y
 
         z.value = (x.value[0] + y.value[0], None)
         heapq.heappush(heap_data, z)
