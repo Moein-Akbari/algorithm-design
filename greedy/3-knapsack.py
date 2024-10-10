@@ -1,7 +1,5 @@
 # In the name of god
 
-import numpy as np
-
 class Item:
     def __init__(self, value, weight, name):
         self.value = value
