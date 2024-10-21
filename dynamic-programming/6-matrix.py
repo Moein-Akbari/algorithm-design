@@ -26,8 +26,10 @@ def matrix_multipication(dimentions: List[int]) -> int:
             
             minimum_cost[i][j] = minimum
 
-    # print(minimum_cost)
+    print(minimum_cost)
+
     return minimum_cost[1][-2]
 
 if __name__ == '__main__':
     print(matrix_multipication([10, 100, 5, 50]))
+    print(matrix_multipication([10, 10, 20, 5, 50]))
