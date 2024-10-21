@@ -3,3 +3,6 @@ clone
 pull #update
 
 add
+commit
+
+push
