@@ -15,7 +15,7 @@ public:
         return max(selected, notSelected);
     }
 
-    bool getIsSelcted(){
+    bool getIsSelected(){
         return isSelected;
     }
 
@@ -88,7 +88,7 @@ int main()
 
     tree ->selectionCheck();
     for (auto child: treeNodes)
-        if (child->getIsSelcted())
+        if (child->getIsSelected())
             cout << child->getId() << " " ;
 }
 
