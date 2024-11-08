@@ -51,6 +51,7 @@ void Graph::addEdge(int vertex1, int vertex2, int weight) {
 int Graph::minimumSpanningTree() {
     int vertex = 1;
     int mstWeight = 0;
+    int parWeight[numberOfVertices];
     set<pair<int, int>> bestDistances; //<weight, vertex>
 
     int distances[numberOfVertices];
@@ -64,10 +65,12 @@ int Graph::minimumSpanningTree() {
         cout << vertex << endl;
         for (pair<int, Node*> edge : vertices[vertex] -> neighbours) {
             int weight = edge.first;
+            cout << "Weight:" << weight << endl;
             Node* neighbour = edge.second;
             cout << "neighbour: " << neighbour -> getId() << endl;
             if (distances[neighbour -> getId()] > distances[vertex] + weight) {
                 distances[neighbour -> getId()] = distances[vertex] + weight;
+                parWeight[neighbour -> getId()] = weight;
                 bestDistances.erase(make_pair(distances[neighbour -> getId()], neighbour -> getId()));
                 bestDistances.insert(make_pair(distances[vertex] + weight, neighbour -> getId()));
             }
@@ -84,11 +87,14 @@ int Graph::minimumSpanningTree() {
             bestDistance = bestDistances.begin();
         }
 
-        mstWeight += (*bestDistance).first;
+        mstWeight += parWeight[vertex];
         vertices[vertex] -> select();
         numberOfSelectedVertices++;
         cout << "end of while " << vertex << endl;
     }
+    for (int i = 0; i < numberOfVertices; i++)
+        cout << parWeight[i] << ' ';
+    cout << endl;
     return mstWeight;
 }
 
