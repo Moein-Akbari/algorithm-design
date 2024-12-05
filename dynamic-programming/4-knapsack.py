@@ -21,14 +21,12 @@ def dp_knapsack(items, weight_limit):
 
     for item_number in range(1, len(items)):
         for weight in range(weight_limit):
-            option1 = max_value[item_number - 1][weight]
-            option2 = 0
+            excluding_new_item = max_value[item_number - 1][weight]
+            including_new_item = 0
             if items[item_number].weight <= weight:
-                option2 = max_value[item_number][weight - items[item_number].weight]\
+                including_new_item = max_value[item_number][weight - items[item_number].weight]\
                       + items[item_number].value
-            max_value[item_number][weight] = max(option1, option2) 
-            # print(f"item_number={item_number}, weight = {weight}")
-            # print(max_value[item_number][weight])
+            max_value[item_number][weight] = max(excluding_new_item, including_new_item) 
     return max_value[-1][-1]
 
 n, weight_limit = list(map(int, input().split()))
