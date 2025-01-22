@@ -13,7 +13,7 @@ def is_2_sectioned(section, adjacency_list):
             section[i] = 0
             stack = [i]
             while stack:
-                u = stack.pop()
+                u = stack.pop(0)
                 for v in adjacency_list[u]:
                     if section[v] is None:
                         section[v] = 1 - section[u]

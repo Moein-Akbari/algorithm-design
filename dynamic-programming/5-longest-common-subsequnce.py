@@ -11,7 +11,8 @@ def longest_common_subsequence(str1, str2) -> Tuple[int, str]:
     update_log = [[None] * (len(str2) + 1) for i in range(len(str1) + 1)]
     
     for i, char1 in enumerate(str1, 1):
-        for j, char2 in enumerate(str2, 1):
+        for j, char2 in enumerate(str2, 1):# in enumerate it is important that you have to write number 
+            #first and then you have to write down charecter first one in enumerate is (str1,number default where to start )
             if char1 == char2:
                 lcs[i][j] = lcs[i - 1][j - 1] + 1
                 update_log[i][j] = (i - 1, j - 1)

@@ -1,4 +1,4 @@
-MOD = 10**9 + 7
+CAMOD = 10**9 + 7
 
 def factorial(n):
     fact = 1
