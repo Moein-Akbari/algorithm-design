@@ -39,21 +39,25 @@ def with_odd_ways(n, edges, k):
 # Function to calculate ways without odd edges
 def without_odd_ways(section1_size, section2_size, edges, k):
     e11 = choosing(section1_size, 2)  # Edges within section1
-    e22 = choosing(section2_size, 2)  # Edges within section2_size
+    e12 = choosing(section2_size, 2)  # Edges within section2_size
 
-    sum_edge_two_sections = e11 +e22  # Total edges within both sections
+    sum_edge_two_sections = e11 + e12  # Total edges within both sections
     edges_between_two_sections = (section1_size) * (section2_size) - edges  # Edges between sections
     ans = 0  # Initialize ans
     for i in range(1, k + 1):  # Iterate from 0 to k
-        ans += choosing(sum_edge_two_sections, i) * choosing(edges_between_two_sections, k - i) * factorial[k]
+        if i > sum_edge_two_sections:
+            break
+        if k - i > edges_between_two_sections:
+            break
+        
+        ans += (
+            choosing(sum_edge_two_sections, i) * choosing(edges_between_two_sections, k - i) * factorial[k]
+        ) % MOD
     return ans % MOD  # Return the result modulo MOD
 
 
 n, m, k = map(int, input().split())
 adjacency_list = [[] for _ in range(n)]
-    # Precompute factorial and inverse factorials
-max_n = n * n  # Maximum possible value for n choose 2
-fact, inv_fact = (max_n, MOD)
 
 for _ in range(m):
     u, v = map(int, input().split())
